@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
     URL = "https://racingnews365.com/every-world-champion-in-formula-1-history"
