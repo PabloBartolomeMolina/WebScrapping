@@ -14,8 +14,6 @@ if __name__ == '__main__':
     # print(results.prettify())  # print the content of extracted data
 
     rows = results.find_all("tr")  # look for rows in the table with proper header identifier
-    # print("Champions:")
-    # print(champions)
     for row in rows:
         cells = row.findAll("td")  # look for each cell using proper identifier
         if len(cells) == 2:
