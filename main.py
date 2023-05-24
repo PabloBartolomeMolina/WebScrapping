@@ -23,4 +23,4 @@ if __name__ == '__main__':
             year = cells[0].find(text=True).replace(" ", "")
             name = cells[1].find(text=True).replace(" ", "")
             printable = year + " : " + name
-            print(year.replace("\n", "") + name.replace("\n", "") + "\n")
+            print(year.replace("\n", "") + name)
