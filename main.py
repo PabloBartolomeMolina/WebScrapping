@@ -1,6 +1,12 @@
-import requests
-from bs4 import BeautifulSoup
+import csvLocal
+import scrapping
 
-if __name__ == '__main__':
+URL_example = "https://racingnews365.com/every-world-champion-in-formula-1-history"
 
 
+def main():
+    scrapping.webScrapping(URL_example)
+
+
+if __name__ == "__main__":
+    main()
