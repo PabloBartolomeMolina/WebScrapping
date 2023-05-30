@@ -5,7 +5,7 @@ URL_example = "https://racingnews365.com/every-world-champion-in-formula-1-histo
 
 
 def main():
-    scrapping.webScrapping(URL_example)
+    scrapping.webScrapping_Table(URL_example)
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ import csvLocal
 from bs4 import BeautifulSoup
 
 
-def webScrapping(web_url):
+def webScrapping_Table(web_url):
     champsDict = {"Year": "Driver"}
 
     r = requests.get(web_url)   # Get content from web page.
