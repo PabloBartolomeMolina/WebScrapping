@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 
 
 def webScrapping(web_url):
+    champsDict = {"Year": "Driver"}
+
     r = requests.get(web_url)   # Get content from web page.
     # print(r.content)
 
@@ -20,6 +22,12 @@ def webScrapping(web_url):
         cells = row.findAll("td")  # Look for each cell using proper identifier.
         if len(cells) == 2:
             year = cells[0].find(text=True).replace(" ", "")    # Make it more readable when printing out.
+            year = year.replace("\n\t\t\t\t\t\t", "")    # Make it more readable when printing out.
+            year = year.replace("\n", "")    # Make it more readable when printing out.
             name = cells[1].find(text=True).replace(" ", "")    # Mate it more readable when printing out.
+            name = name.replace("\n\t\t\t\t\t\t", "")    # Mate it more readable when printing out.
+            name = name.replace("\n", "")    # Mate it more readable when printing out.
             printable = year + " : " + name
             print(year.replace("\n", "") + name)
+            champsDict[year] = name
+    print (champsDict)
