@@ -28,7 +28,6 @@ def webScrapping(web_url):
             name = cells[1].find(text=True).replace(" ", "")    # Mate it more readable when printing out.
             name = name.replace("\n\t\t\t\t\t\t", "")    # Mate it more readable when printing out.
             name = name.replace("\n", "")    # Mate it more readable when printing out.
-            #print(year.replace("\n", "") + name)
             champsDict[year] = name
     print (champsDict)
     csvLocal.csvTable(champsDict)
