@@ -18,6 +18,7 @@ def generate_graph(csvname):
     plt.bar(x, y, color='g', width=0.72, label="Championships")
     plt.xlabel('Driver')
     plt.ylabel('Championships')
+    plt.xticks(rotation = 90)
     plt.title('Number of championships per driver')
     plt.legend()
     plt.show()
