@@ -1,4 +1,3 @@
-import csvLocal
 import scrapping
 
 URL_example = "https://racingnews365.com/every-world-champion-in-formula-1-history"
