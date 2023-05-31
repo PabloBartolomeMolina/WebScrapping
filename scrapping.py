@@ -1,6 +1,10 @@
 import requests
 import csvLocal
+import graphGeneration
 from bs4 import BeautifulSoup
+
+
+csvFile = 'champions.csv'
 
 
 def webScrapping_Table(web_url):
@@ -30,4 +34,5 @@ def webScrapping_Table(web_url):
             name = name.replace("\n", "")    # Mate it more readable when printing out.
             champsDict[year] = name
     print (champsDict)
-    csvLocal.csvTable(champsDict)
+    csvLocal.csvTable(champsDict, csvFile)
+    graphGeneration.generate_graph(csvFile)
