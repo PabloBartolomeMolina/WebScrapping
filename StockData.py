@@ -9,14 +9,14 @@ def get_stock_data(stock_url):
     response = requests.get(stock_url)
     soup = BeautifulSoup(response.content, 'html.parser')
     dfs = pd.read_html(response.text)   # List with content of the table of data we look for.
-    print(type(dfs))
+    # print(type(dfs))
 
     dfCount = 0
     for df in dfs:
-        print(' DataFrame : ', dfCount)
-        print(df)
+        # print(' DataFrame : ', dfCount)
+        # print(df)
         dfCount = dfCount + 1
-    print(dfs[4])
+    # print(dfs[4])
 
     return dfs[4]
 
