@@ -27,27 +27,25 @@ def main():
 
     if os.path.exists(excel_file):
         wb = load_workbook(excel_file)
+        ws = wb.worksheets['Orange'] # For the moment, unique worksheet existing for debugging purposes.
     else:
         wb = Workbook()
+        ws = wb.active
+        ws.title = "Orange"
+        ws['A1'] = "DATE :"
+        ws['A1'].font = Font(bold=True)
 
-    ws = wb.active
-    ws.title = "Orange"
-    ws['A1'] = "DATE :"
-    ws['A1'].font = Font(bold=True)
-
-    print(ws['B1'].value)
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
     for i in range(2, 16384, 4):
         cell = ws.cell(1, i)
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
-            print(cell.value)
             ws.merge_cells(None, 1, i, 1, i+3)
             cell.alignment = Alignment(horizontal="center")
             cell.font = Font(bold=True)
             break
         else:
-            print(cell.value)
+            print("ERROR")
     # Get data in the Excel file.
     for r in dataframe_to_rows(stock_data, index=True, header=True):
         ws.append(r)
