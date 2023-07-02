@@ -14,6 +14,8 @@ excel_file = "D:/Python_Projects/WebScrapping/stockData.xlsx"
 def insert_dataframe(ws, start_row, start_col, df):
     for r in dataframe_to_rows(df, index=False, header=False):
         ws.append(r)
+    if ws["A15"] is not None:
+        ws.move_range("A15:D28", rows=-13, cols=3)
     for cell in ws[start_row][start_col:start_col + len(df.columns)]:
         cell.alignment = Alignment(horizontal='center')
 
@@ -27,31 +29,29 @@ def main():
 
     if os.path.exists(excel_file):
         wb = load_workbook(excel_file)
-        ws = wb.worksheets['Orange'] # For the moment, unique worksheet existing for debugging purposes.
+        ws = wb.worksheets[0]    # For the moment, unique worksheet existing for debugging purposes.
     else:
         wb = Workbook()
         ws = wb.active
         ws.title = "Orange"
-        ws['A1'] = "DATE :"
-        ws['A1'].font = Font(bold=True)
 
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
-    for i in range(2, 16384, 4):
+    start_col = 2
+    for i in range(1, 16384, 4):
         cell = ws.cell(1, i)
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
             ws.merge_cells(None, 1, i, 1, i+3)
             cell.alignment = Alignment(horizontal="center")
             cell.font = Font(bold=True)
+            start_col = i
             break
         else:
-            print("ERROR")
+            print(cell.value)   # Print date of already used cell.
     # Get data in the Excel file.
-    for r in dataframe_to_rows(stock_data, index=True, header=True):
-        ws.append(r)
+    insert_dataframe(ws, 2, start_col, stock_data)
 
     wb.save(excel_file)
-
 
 if __name__ == "__main__":
     main()
