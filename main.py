@@ -40,7 +40,7 @@ def main():
     index_col = 1
     for i in range(2, 16384, 4):
         cell = ws.cell(1, i)
-        index_col = index_col = i + 1
+        index_col = index_col + 1
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
             ws.merge_cells(None, 1, i, 1, i+3)
