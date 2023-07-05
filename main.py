@@ -37,7 +37,7 @@ def main():
 
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
     start_col = 2
-    index_col = 1
+    index_col = 0
     for i in range(2, 16384, 4):
         cell = ws.cell(1, i)
         index_col = index_col + 1
