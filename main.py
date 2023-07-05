@@ -38,7 +38,7 @@ def main():
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
     start_col = 2
     index_col = 0
-    for i in range(2, 16384, 4):
+    for i in range(1, 16384, 4):
         cell = ws.cell(1, i)
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
