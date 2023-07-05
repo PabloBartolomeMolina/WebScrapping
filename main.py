@@ -40,13 +40,13 @@ def main():
     index_col = 0
     for i in range(2, 16384, 4):
         cell = ws.cell(1, i)
-        index_col = index_col + 1
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
             ws.merge_cells(None, 1, i, 1, i+3)
             cell.alignment = Alignment(horizontal="center")
             cell.font = Font(bold=True)
             start_col = i
+            index_col = index_col + 1
             break
         else:
             print(cell.value)   # Print date of already used cell.
