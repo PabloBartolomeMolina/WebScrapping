@@ -1,6 +1,5 @@
 from datetime import date
 from openpyxl.styles import Alignment, Font, PatternFill
-from openpyxl.utils import get_column_letter
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -10,12 +9,13 @@ import StockData
 url_bourse = "https://www.boursorama.com/cours/1rPORA/"
 excel_file = "D:/Python_Projects/WebScrapping/stockData.xlsx"
 
+
 # Function to insert DataFrame below the current date cell
-def insert_dataframe(ws, start_row, start_col, df):
+def insert_dataframe(ws, start_row, start_col, df, index_col):
     for r in dataframe_to_rows(df, index=False, header=False):
         ws.append(r)
     if ws["A15"] is not None:
-        ws.move_range("A15:D28", rows=-13, cols=3)
+        ws.move_range("A15:D28", rows=-13, cols=4*index_col)
     for cell in ws[start_row][start_col:start_col + len(df.columns)]:
         cell.alignment = Alignment(horizontal='center')
 
@@ -37,8 +37,10 @@ def main():
 
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
     start_col = 2
-    for i in range(1, 16384, 4):
+    index_col = 1
+    for i in range(2, 16384, 4):
         cell = ws.cell(1, i)
+        index_col = i = index_col = i + 1
         if cell.value is None:
             cell.value = today.strftime("%d-%m-%Y")
             ws.merge_cells(None, 1, i, 1, i+3)
@@ -49,7 +51,7 @@ def main():
         else:
             print(cell.value)   # Print date of already used cell.
     # Get data in the Excel file.
-    insert_dataframe(ws, 2, start_col, stock_data)
+    insert_dataframe(ws, 2, start_col, stock_data, index_col)
 
     wb.save(excel_file)
 
