@@ -36,8 +36,7 @@ def main():
         ws.title = "Orange"
 
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
-    start_col = 2
-    index_col = 0
+    index_col = 0   # Used as index to shift data after first day recovering data.
     for i in range(1, 16384, 4):
         cell = ws.cell(1, i)
         if cell.value is None:
@@ -51,7 +50,7 @@ def main():
         else:
             print(cell.value)   # Print date of already used cell.
     # Get data in the Excel file.
-    insert_dataframe(ws, 2, start_col, stock_data, index_col)
+    insert_dataframe(ws, 2, 1, stock_data, index_col)
 
     wb.save(excel_file)
 
