@@ -44,7 +44,6 @@ def main():
             ws.merge_cells(None, 1, i, 1, i+3)
             cell.alignment = Alignment(horizontal="center")
             cell.font = Font(bold=True)
-            start_col = i
             index_col = index_col + 1
             break
         else:
