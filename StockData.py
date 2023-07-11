@@ -16,9 +16,9 @@ def get_stock_data(stock_url):
         #print(' DataFrame : ', dfCount)
         #print(df)
         dfCount = dfCount + 1
-    # print(dfs[5])
+    # print(dfs[4])
 
-    return dfs[5]
+    return dfs[4]
 
 
 def save_data_to_csv(stock_data, filename):
