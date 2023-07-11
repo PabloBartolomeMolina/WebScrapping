@@ -6,8 +6,12 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 import os.path
 import StockData
 
-url_bourse = "https://www.boursorama.com/cours/1rPORA/"
+url_bourse = "https://www.boursorama.com/cours/"
 excel_file = "D:/Python_Projects/WebScrapping/stockData.xlsx"
+stocks_dict = {
+    'Orange' : "1rPORA/",
+    'Alstom' : "1rPALO/"
+}
 
 
 # Function to insert DataFrame below the current date cell
@@ -23,6 +27,13 @@ def insert_dataframe(ws, start_row, start_col, df, index_col):
 def main():
     today = date.today()
 
+    for key in stocks_dict.keys():
+        # stocks_dict['key']
+        url_data = url_bourse + stocks_dict[key]
+        print(url_data)
+        stock_data = StockData.get_stock_data(url_data)
+        print(type(stock_data))
+'''   
     stock_data = StockData.get_stock_data(url_bourse)
     # stock_data = stock_data.reset_index(drop=True)
     print(type(stock_data))
@@ -52,7 +63,7 @@ def main():
     insert_dataframe(ws, 2, 1, stock_data, index_col)
 
     wb.save(excel_file)
-
+'''
 
 if __name__ == "__main__":
     main()
