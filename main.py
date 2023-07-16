@@ -27,6 +27,16 @@ def insert_dataframe(ws, start_row, start_col, df, index_col):
 def main():
     today = date.today()
 
+    if os.path.exists(excel_file):
+        wb = load_workbook(excel_file)
+        ws = wb.worksheets[0]  # For the moment, unique worksheet existing for debugging purposes.
+    else:
+        wb = Workbook()
+        for key in stocks_dict.keys():
+            wb.create_sheet(key)   # Create a worksheet per company.
+        del wb['Sheet']     # Remove worksheet created by default.
+        wb.save(excel_file)
+
     for key in stocks_dict.keys():
         # stocks_dict['key']
         url_data = url_bourse + stocks_dict[key]
@@ -38,13 +48,7 @@ def main():
     # stock_data = stock_data.reset_index(drop=True)
     print(type(stock_data))
 
-    if os.path.exists(excel_file):
-        wb = load_workbook(excel_file)
-        ws = wb.worksheets[0]    # For the moment, unique worksheet existing for debugging purposes.
-    else:
-        wb = Workbook()
-        ws = wb.active
-        ws.title = "Orange"
+    
 
     # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
     index_col = 0   # Used as index to shift data after first day recovering data.
