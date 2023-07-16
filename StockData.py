@@ -13,20 +13,20 @@ def get_stock_data(stock_url):
 
     dfRet = dfs[0]
 
-    dfCount = 0
+    dfFound = 0
     for df in dfs:
-        dfCount = 0
         # iterating the columns
         for col in df.columns:
             if col != 'période':
-                dfCount = dfCount + 1
-                break
+                dfFound = 0
             else:
-                print(col)
-                print(df)
+                dfFound = 1
                 dfRet = df
                 break
-
+        if dfFound != 1:
+            print('Keep looking')
+        else:
+            break
     return dfRet
 
 
