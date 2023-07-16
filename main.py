@@ -43,6 +43,7 @@ def main():
         print(url_data)
         stock_data = StockData.get_stock_data(url_data)
         print(type(stock_data))
+        print(stock_data)
 
         for ws in wb.worksheets:
             if ws.title != key: continue
