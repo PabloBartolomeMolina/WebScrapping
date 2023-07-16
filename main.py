@@ -27,6 +27,15 @@ def insert_dataframe(ws, start_row, start_col, df, index_col):
 def main():
     if os.path.exists(excel_file):
         wb = load_workbook(excel_file)
+        companies_list = list(stocks_dict.keys())
+        companies_list.sort()
+        for key in companies_list:
+            if key in wb.sheetnames:
+                print(key, " already present")
+                continue
+            else:
+                print(key, " newly added")
+                wb.create_sheet(key)   # Create a worksheet for newly added company.
     else:
         wb = Workbook()
         for key in stocks_dict.keys():
