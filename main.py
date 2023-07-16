@@ -43,31 +43,27 @@ def main():
         print(url_data)
         stock_data = StockData.get_stock_data(url_data)
         print(type(stock_data))
-'''   
-    stock_data = StockData.get_stock_data(url_bourse)
-    # stock_data = stock_data.reset_index(drop=True)
-    print(type(stock_data))
 
-    
+        for ws in wb.worksheets:
+            if ws.title != key: continue
+            else:
+                # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
+                index_col = 0  # Used as index to shift data after first day recovering data.
+                for i in range(1, 16384, 4):
+                    cell = ws.cell(1, i)
+                    if cell.value is None:
+                        cell.value = today.strftime("%d-%m-%Y")
+                        ws.merge_cells(None, 1, i, 1, i + 3)
+                        cell.alignment = Alignment(horizontal="center")
+                        cell.font = Font(bold=True)
+                        index_col = index_col + 1
+                        break
+                    else:
+                        print(cell.value)  # Print date of already used cell.
+                    # Get data in the Excel file.
+                insert_dataframe(ws, 2, 1, stock_data, index_col)
+                wb.save(excel_file)
 
-    # Max cols in empty Excel file is 16384. Find the first cell empty and merge and fill it.
-    index_col = 0   # Used as index to shift data after first day recovering data.
-    for i in range(1, 16384, 4):
-        cell = ws.cell(1, i)
-        if cell.value is None:
-            cell.value = today.strftime("%d-%m-%Y")
-            ws.merge_cells(None, 1, i, 1, i+3)
-            cell.alignment = Alignment(horizontal="center")
-            cell.font = Font(bold=True)
-            index_col = index_col + 1
-            break
-        else:
-            print(cell.value)   # Print date of already used cell.
-    # Get data in the Excel file.
-    insert_dataframe(ws, 2, 1, stock_data, index_col)
-
-    wb.save(excel_file)
-'''
 
 if __name__ == "__main__":
     main()
