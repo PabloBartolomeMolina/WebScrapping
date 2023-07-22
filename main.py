@@ -58,15 +58,15 @@ def main():
         url_data = url_bourse + stocks_dict[key]
         stock_data = StockData.get_stock_data(url_data)
         stockList.append(key)
-        currentVarList = stock_data.values[0][1]
-        weekVarList = stock_data.values[1][1]
-        monthVarList = stock_data.values[2][1]
-        month3VarList = stock_data.values[3][1]
-        month6VarList = stock_data.values[4][1]
-        yearVarList = stock_data.values[5][1]
-        year3VarList = stock_data.values[6][1]
-        year5VarList = stock_data.values[7][1]
-        year10VarList = stock_data.values[8][1]
+        currentVarList.append(stock_data.values[0][1])
+        weekVarList.append(stock_data.values[1][1])
+        monthVarList.append(stock_data.values[2][1])
+        month3VarList.append(stock_data.values[3][1])
+        month6VarList.append(stock_data.values[4][1])
+        yearVarList.append(stock_data.values[5][1])
+        year3VarList.append(stock_data.values[6][1])
+        year5VarList.append(stock_data.values[7][1])
+        year10VarList.append(stock_data.values[8][1])
 
         for ws in wb.worksheets:
             if ws.title != key:
