@@ -23,3 +23,20 @@ def generate_graph(csvname):
     plt.title('Number of championships per driver')
     plt.legend()
     plt.show()
+
+
+def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, month6Var, yearVar, year3Var, year5Var, year10Var):
+    index = 0
+    for stock in stocks:
+        fig, ax = plt.subplots()
+        varts = ['CurrentYear', '1 week', '1 month', '3 months', '6 months', '1 year', '3 years', '5 years', '10 years']
+        counts = [currentYearVar[index], weekVar[index], monthVar[index], month3Var[index], month6Var[index],
+                  yearVar[index], year3Var[index], year5Var[index], year10Var[index]]
+
+        ax.bar(varts, counts)
+        ax.set_ylabel('Variation')
+        ax.set_title('Variations stock ', )
+
+        plt.show()
+
+        index = index + 1
