@@ -9,7 +9,7 @@ def get_stock_data(stock_url):
     response = requests.get(stock_url)
     soup = BeautifulSoup(response.content, 'html.parser')
     dfs = pd.read_html(response.text)  # List with content of the table of data we look for.
-    print(type(dfs))
+    # print(type(dfs))
 
     dfRet = dfs[0]
 
@@ -23,10 +23,11 @@ def get_stock_data(stock_url):
                 dfFound = 1
                 dfRet = df
                 break
-        if dfFound != 1:
-            print('Keep looking')
-        else:
+        if dfFound == 1:
             break
+        else:
+            # print('Keep looking')
+            continue
     return dfRet
 
 
