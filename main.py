@@ -56,10 +56,10 @@ def outputFile_create(filename, stocks_dict):
         companies_list.sort()
         for key in companies_list:
             if key in wb.sheetnames:
-                print(key, " already present")
+                # print(key, " already present")
                 continue
             else:
-                print(key, " newly added")
+                # print(key, " newly added")
                 wb.create_sheet(key)  # Create a worksheet for newly added company.
     else:
         wb = Workbook()
@@ -106,7 +106,8 @@ def main():
                             index_col = index_col + 1
                             break
                         else:
-                            print(cell.value)  # Print date of already used cell.
+                            # print("Hello ", cell.value)  # Print date of already used cell.
+                            continue
                     # Get data in the Excel file.
                     insert_dataframe(ws, 2, 1, stock_data, index_col)
                     wb.save(excel_file)
