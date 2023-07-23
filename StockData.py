@@ -39,7 +39,8 @@ def save_data_to_csv(stock_data, filename):
         for timeframe, value in stock_data.items():
             writer.writerow([timeframe, value])
 
-
+'''
+# Function nos used within current functionalities
 def plot_graph(stock_data):
     timeframes = list(stock_data.keys())
     values = list(stock_data.values())
@@ -50,3 +51,4 @@ def plot_graph(stock_data):
     plt.ylabel('Stock Value')
     plt.title('Stock Evolution')
     plt.show()
+'''

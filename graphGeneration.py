@@ -4,7 +4,8 @@ import csv
 x = []
 y = []
 
-
+'''
+# Function nos used within current functionalities
 def generate_graph(csvname):
     with open(csvname, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')  # Delimiter shall be adapted depending on the CSV file format.
@@ -23,7 +24,7 @@ def generate_graph(csvname):
     plt.title('Number of championships per driver')
     plt.legend()
     plt.show()
-
+'''
 
 def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, month6Var, yearVar, year3Var, year5Var, year10Var):
     index = 0
