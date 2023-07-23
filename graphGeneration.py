@@ -27,19 +27,29 @@ def generate_graph(csvname):
 '''
 
 
-def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, month6Var, yearVar, year3Var, year5Var, year10Var):
+def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, month6Var, yearVar, year3Var, year5Var,
+                       year10Var):
     index = 0
     for stock in stocks:
         varts = ['CurrentYear', '1 week', '1 month', '3 months', '6 months', '1 year', '3 years', '5 years', '10 years']
         # Get values in format 'float' to properly show them in the plots.
-        counts = [float(currentYearVar[index].strip("%")), float(weekVar[index].strip("%")), float(monthVar[index].strip("%")),
-                  float(month3Var[index].strip("%")), float(month6Var[index].strip("%")), float(yearVar[index].strip("%")),
-                  float(year3Var[index].strip("%")), float(year5Var[index].strip("%")), float(year10Var[index].strip("%"))]
+        counts = [float(currentYearVar[index].strip("%")), float(weekVar[index].strip("%")),
+                  float(monthVar[index].strip("%")),
+                  float(month3Var[index].strip("%")), float(month6Var[index].strip("%")),
+                  float(yearVar[index].strip("%")),
+                  float(year3Var[index].strip("%")), float(year5Var[index].strip("%")),
+                  float(year10Var[index].strip("%"))]
 
         plt.ylim(min(counts), max(counts))
         plt.bar(varts, counts)
         plt.ylabel('Variation')
-        plt.title('Variations stock ', stock)
+        plt.xticks(rotation=90)  # Make text of X-labels to appear vertically.
+        strTitle = 'Variations stock "' + stock + '" (%)'
+        plt.title(strTitle)
+        for i in range(len(varts)):
+            plt.text(i, counts[i] // 2, counts[i], ha='center', Bbox=dict(facecolor='white', alpha=85))
+        plt.subplots_adjust()
+        plt.tight_layout()
 
         plt.show()
 
