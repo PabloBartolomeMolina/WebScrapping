@@ -26,6 +26,7 @@ def generate_graph(csvname):
     plt.show()
 '''
 
+
 def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, month6Var, yearVar, year3Var, year5Var, year10Var):
     index = 0
     for stock in stocks:
@@ -38,6 +39,7 @@ def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, mon
         ax.set_ylabel('Variation')
         ax.set_title('Variations stock ')
 
+        plt.subplots_adjust()
         plt.show()
 
         index = index + 1
