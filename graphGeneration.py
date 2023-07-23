@@ -35,7 +35,7 @@ def plot_yearVariation(stocks, currentYearVar, weekVar, monthVar, month3Var, mon
 
         ax.bar(varts, counts)
         ax.set_ylabel('Variation')
-        ax.set_title('Variations stock ', )
+        ax.set_title('Variations stock ')
 
         plt.show()
 
